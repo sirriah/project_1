@@ -1,0 +1,135 @@
+body{
+    font-family: 'Roboto', sans-serif;
+    background-color: #eff1f2;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1, h2, h3{
+    font-family: 'Kumbh Sans', sans-serif;
+    font-weight: bold;
+    text-align: center;
+}
+
+button{
+    background-color: #eff1f2;
+    color: black;
+    font-size: 1.1rem;
+    padding: 1rem 2rem;
+    margin-top: 20px;
+    border: none;
+    cursor: pointer;
+    transition: 300ms all ease-in-out;
+    box-shadow: 10px 10px 15px #c5c9d0, -10px -10px 15px #FFFFFF, -2px -2px  #FFFFFF, 2px 2px  #c5c9d0;
+    border-radius: 20px;
+    display: block;
+}
+
+button:hover{
+    background-color:  white;
+}
+
+label{
+    display: block;
+}
+input{
+    font-size: 1.1rem;
+    display: inline-block;
+    margin: 1rem 0rem 2rem;
+    padding: 1rem 0.5rem;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid rgb(72, 72, 72);
+    box-sizing: border-box;
+}
+
+.content{
+    max-width: 400px;
+    margin: 0px auto;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    
+}
+
+.center{
+margin: 30px auto 20px;
+}
+
+.wrapper{
+    position: relative;
+}
+
+.below{
+    position: absolute;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.user__menu{
+    background-color: white;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    text-align: center;
+}
+
+.buttons-container{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+}
+
+
+.disabled {
+    display: none;
+}
+
+.list--detail{
+    padding: 1rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    background-color: rgb(27, 97, 218);
+    color: white;
+    box-shadow: 10px 10px 10px #c5c9d0, -10px -10px 10px #FFFFFF;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.list--detail:hover{
+    background-color: rgb(15, 74, 177);
+}
+
+.done{
+    background-color: hsl(76, 100%, 79%);
+    background-image: url("./check.png");
+    background-size: 30px 30px;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+}
+
+.todo-list{
+    margin-top: 40px;
+    padding: 0;
+}
+
+.todo-list li{
+    cursor: pointer;
+    line-height: 3rem;
+    list-style-type: none;
+    padding-left: 70px;
+    
+    
+}
+
+.username{
+    color: rgb(27, 97, 218);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.username:hover{
+    color: black;
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- index -->
+    <div id="index" class="content hidden">
+      <h1>To-Do app</h1>
+      <p>This is the Project 1 for the JS course on Pirple.com</p>
+      <div>
+        <form action="">
+          <button id="signup">Sign up</button>
+          <button id="login">Log in</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- sign up  -->
+
+    <div id="signup" class="wrapper">
+      <h1>Create a new user</h1>
+      <p class="errors">err message</p>
+      <form action="">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" />
+
+        <label for="surname">Surname</label>
+        <input type="text" name="surname" id="surname" />
+
+        <label for="email">E-mail</label>
+        <input type="email" name="email" id="email" />
+
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" />
+
+        <label for="termsofuse">I agree with the Terms of use</label>
+        <input type="checkbox" name="termsofuse" id="termsofuse" />
+
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
+    <!-- log in -->
+
+    <div id="login" class="wrapper">
+      <h1>Log in</h1>
+      <form action="">
+        <label for="email">E-mail</label>
+        <input type="email" name="email" id="email" />
+
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" />
+
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
+    <!-- dashboard -->
+
+    <div id="dashboard" class="wrapper">
+      <h1>Dashboard</h1>
+
+      <div class="list-of-lists">
+        <div class="todo-list">
+          <h3>Saturday list</h3>
+          <span class="date">5 May 2021</span>
+        </div>
+        <div class="new-list">Create new list</div>
+      </div>
+    </div>
+
+    <!--  -->
+
+    <div id="new-list" class="wrapper">
+      <h1>New list</h1>
+      <form action="">
+        <label for="name-list">Name</label>
+        <input type="text" name="name-list" id="name-list" />
+
+        <label for="new-item">New item</label>
+        <input type="text" name="new-litem" id="new-item" />
+
+        <button type="reset">Reset</button>
+        <button type="submit">Save</button>
+      </form>
+    </div>
+  </body>
+</html>

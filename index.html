@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="style.css" />
+
+    <title>To-Do app</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="userMenu" class="user__menu"></div>
+    <div id="content" class="content"></div>
+
+    <div id="disabled" class="disabled">
+      <!-- index -->
+      <div id="firstMenu">
+        <h1>To-Do app</h1>
+        <p>This is the Project 1 for the JS course on Pirple.com</p>
+        <div class="buttons-container">
+          <button id="signup">Sign up</button>
+          <button id="login">Log in</button>
+        </div>
+      </div>
+
+      <!-- sign up  -->
+
+      <div id="signupDiv" class="wrapper">
+        <h1>Create a new user</h1>
+        <p id="errorSignup" class="errors"></p>
+        <form id="signupForm" method="POST">
+          <label for="name">Name</label>
+          <input type="text" name="name" id="name" />
+
+          <label for="surname">Surname</label>
+          <input type="text" name="surname" id="surname" />
+
+          <label for="email">E-mail</label>
+          <input type="email" name="email" id="email" />
+
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password" />
+
+          <label for="termsofuse">I agree with the Terms of use</label>
+          <input type="checkbox" name="termsofuse" id="termsofuse" />
+
+          <button>Submit</button>
+        </form>
+      </div>
+
+      <!-- log in -->
+
+      <div id="loginDiv" class="wrapper">
+        <h1>Log in</h1>
+        <p id="errorLogin" class="errors"></p>
+        <form id="loginForm" method="POST">
+          <label for="email-login">E-mail</label>
+          <input type="email" name="email-login" id="email-login" />
+
+          <label for="password-login">Password</label>
+          <input type="password" name="password-login" id="password-login" />
+
+          <button class="center">Submit</button>
+        </form>
+      </div>
+
+      <!-- dashboard -->
+
+      <div id="dashboard" class="wrapper">
+        <h1>Dashboard</h1>
+        <div class="new-list">
+          <button id="createNewList" class="center">Create new list</button>
+        </div>
+      </div>
+
+      <!-- new list -->
+
+      <div id="new-list" class="wrapper">
+        <h1>Your list</h1>
+        <form id="listSaveForm" method="post">
+          <label for="listName">Name</label>
+          <input type="text" name="listName" id="listName" tabindex="1" />
+          <button type="submit" class="below" tabindex="4">Save</button>
+        </form>
+
+        <form id="listItemForm" method="post">
+          <label for="itemNew">New item</label>
+          <input type="text" name="itemNew" id="itemNew" tabindex="2" />
+
+          <button type="submit" id="insertItem" tabindex="3">Insert</button>
+        </form>
+
+        <ul id="toDoList" class="todo-list"></ul>
+      </div>
+
+      <div id="userAccount" class="user-account">
+        <h1>User Account</h1>
+      
+      <form id="userAccountForm" method="post">
+        <label for="nameAccount">Name</label>
+        <input type="text" name="name" id="nameAccount" />
+
+        <label for="surnameAccount">Surname</label>
+        <input type="text" name="surname" id="surnameAccount" />
+
+        <label for="emailAccount">E-mail</label>
+        <input type="email" name="email" id="emailAccount" />
+
+        <label for="passwordAccount">Password</label>
+        <input type="password" name="password" id="passwordAccount" />
+
+        <button>Submit</button>
+      </form>
+    </div>
+  </div>
+
+    <script src="./js/index.js"></script>
+  </body>
+</html>
