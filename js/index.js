@@ -32,24 +32,26 @@ content.appendChild(firstMenu);
 
 // check if the user is logged in
 const isUserLogged = () => {
-  if(user.name){
+  if (user.name) {
     username.innerHTML = `${user.name} ${user.surname}`;
     userMenu.innerHTML = `You are logged in as `;
     userMenu.appendChild(username);
+    userMenu.appendChild(buttonAccount);
   } else {
-    
     userMenu.innerHTML = `You are not logged in`;
   }
+};
 
-
-}
+const buttonAccount = document.createElement("button");
+buttonAccount.innerText = "User Account";
+buttonAccount.classList.add("buttonAccount");
 
 // username in header
 const username = document.createElement("span");
 username.classList.add("username");
 username.id = "username";
 
-username.addEventListener("click", (e) => {
+buttonAccount.addEventListener("click", (e) => {
   content.innerHTML = ""; // delete the content
 
   const nameAccount = document.getElementById("nameAccount");
@@ -67,6 +69,7 @@ username.addEventListener("click", (e) => {
   content.appendChild(userAccount);
 });
 
+// saving User account
 userAccountForm.addEventListener("submit", (e) => {
   localStorage.removeItem(user.email);
 
@@ -76,32 +79,23 @@ userAccountForm.addEventListener("submit", (e) => {
   user.password = document.getElementById("passwordAccount").value;
 
   console.log(user);
-  
+
   localStorage.setItem(user.email, JSON.stringify(user));
   isUserLogged();
   content.innerHTML = ""; // delete the content
   content.appendChild(dashboard);
 });
 
-
 isUserLogged();
 
-
-
 login.addEventListener("click", (e) => {
-  //content.innerHTML = loginDiv.innerHTML;
-
-  //console.log(content.children);
-  //disabled.appendChild(content.children);
   content.innerHTML = ""; // delete the content
-  // let clonNode = loginDiv.cloneNode(true);
-  // clonNode.id = "loginDivClone";
+
   isUserLogged();
   content.appendChild(loginDiv);
 });
 
 signup.addEventListener("click", (e) => {
-  // disabled.appendChild(content.childNodes);
   isUserLogged();
   content.innerHTML = ""; // delete the content
   content.appendChild(signupDiv);
@@ -114,9 +108,7 @@ function loginUser(e) {
   e.preventDefault();
   const emailLogin = document.getElementById("email-login").value;
   const passwordLogin = document.getElementById("password-login").value;
-  //console.log(emailLogin);
   const loggedUser = JSON.parse(localStorage.getItem(emailLogin));
-  //console.log(typeof loggedUser);
 
   if (loggedUser && passwordLogin === loggedUser["password"]) {
     console.log("this user exists");
@@ -125,52 +117,88 @@ function loginUser(e) {
     content.innerHTML = "";
     writeOutLists();
     content.appendChild(dashboard);
+  } else if (loggedUser && passwordLogin !== loggedUser["password"]) {
+    const errorLogin = document.getElementById("errorLogin");
+    errorLogin.innerHTML = "You set a wrong password.";
+    console.log("wrong password");
   } else {
     const errorLogin = document.getElementById("errorLogin");
     errorLogin.innerHTML = "User with this email does not exists.";
     console.log("this user not exists");
   }
-
   isUserLogged();
 }
 
 // =============== Signup page ===============
-
+const nameSignup = document.getElementById("name");
+  const surnameSignup = document.getElementById("surname");
+  const emailSignup = document.getElementById("email");
+  const passwordSignup = document.getElementById("password");
+  const termsOfUse = document.getElementById("termsofuse");
 let createNewUser = (e) => {
   console.log("before prevent");
   e.preventDefault();
+  const errorSignup = document.getElementById("errorSignup");
+  errorSignup.innerHTML = "";
 
-  if (!document.getElementById("termsofuse").checked) {
-    const errorSignup = document.getElementById("errorSignup");
-    errorSignup.innerHTML = "You have to agree with the Terms of Use.";
-  } else {
-      // form validation and new user is created
+  if (!termsOfUse.checked) {
+    errorSignup.innerHTML = "You have to agree with the Terms of Use. <br/>";
+   
+  }
+
+  if(nameSignup.value == "") {
+    errorSignup.innerHTML += "Name field have to be filled. <br/>";
+    nameSignup.classList.add("error-signup");
+  
+  } 
+
+  if(surnameSignup.value == "") {
+    errorSignup.innerHTML += "Surname field have to be filled. <br/>";
+    surnameSignup.classList.add("error-signup");
+  
+  } 
+
+  if(emailSignup.value == "") {
+    errorSignup.innerHTML += "Email field have to be filled. <br/>";
+    emailSignup.classList.add("error-signup");
+  
+  } 
+
+  if(passwordSignup.value == "") {
+    errorSignup.innerHTML += "Password field have to be filled. ";
+    passwordSignup.classList.add("error-signup");
+  
+  } 
+  
+  if(errorSignup.innerHTML.length == "") {
+    // form validation and new user is created
     validationSignup();
-    
+
     // to the dashboard
     content.innerHTML = ""; // delete the content
-  content.appendChild(dashboard);
+    content.appendChild(dashboard);
   }
   isUserLogged();
 };
+
 signupForm.addEventListener("submit", createNewUser);
 
 let validationSignup = () => {
-  const name = document.getElementById("name").value;
-  const surname = document.getElementById("surname").value;
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+  
 
+  //field validation
+
+  
   user = {
-    name: name,
-    surname: surname,
-    email: email,
-    password: password,
+    name: nameSignup.value,
+    surname: surnameSignup.value,
+    email: emailSignup.value,
+    password: passwordSignup.value,
     lists: [],
   };
 
   console.log(user);
-  localStorage.setItem(email, JSON.stringify(user));
+  localStorage.setItem(user.email, JSON.stringify(user));
 };
 
 // =============== DASHBOARD ===============
@@ -212,9 +240,12 @@ listSaveForm.addEventListener("submit", (e) => {
   if (isNewList) {
     //console.log(listUL);
 
-    const nameList = document.getElementById("listName").value;
-    // toISOString converts the UTC date-time to ISO object 
-    const creationDate = (new Date()).toISOString();
+    let nameList = document.getElementById("listName").value;
+    if (!nameList) {
+      nameList = "Untitled";
+    }
+    // toISOString converts the UTC date-time to ISO object
+    const creationDate = new Date().toISOString();
 
     listObject = {
       nameList: nameList,
@@ -306,19 +337,16 @@ listOfLists.addEventListener("click", (e) => {
 
   nameList.value = foundedList.nameList;
   listUL.innerHTML = foundedList.listUL;
- 
+
   // insert the list from e.target into the html form
 
   content.innerHTML = "";
   content.appendChild(newList);
 });
 
-
 // ============= CHECK AS "DONE" =============
 
 listUL.addEventListener("click", (e) => {
-    const itemLI = e.target;
-    itemLI.classList.toggle("done");
+  const itemLI = e.target;
+  itemLI.classList.toggle("done");
 });
-
-

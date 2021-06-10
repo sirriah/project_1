@@ -35,7 +35,7 @@ label{
 }
 input{
     font-size: 1.1rem;
-    display: inline-block;
+    /* display: inline-block; */
     margin: 1rem 0rem 2rem;
     padding: 1rem 0.5rem;
     width: 100%;
@@ -81,10 +81,21 @@ margin: 30px auto 20px;
     padding-top: 20px;
 }
 
+.buttonAccount{
+    display: inline-block;
+    box-shadow: none;
+    margin-top: 0;
+    margin-left: 20px;
+}
+
+.buttonAccount:hover{
+    background-color: #a0cfff;
+}
 
 .disabled {
     display: none;
 }
+
 
 .list--detail{
     padding: 1rem;
@@ -126,10 +137,13 @@ margin: 30px auto 20px;
 
 .username{
     color: rgb(27, 97, 218);
-    text-decoration: underline;
-    cursor: pointer;
 }
 
-.username:hover{
-    color: black;
+
+.errors{
+    color: red;
+}
+
+.error-signup{
+    border: 1px solid red;
 }
