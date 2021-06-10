@@ -131,10 +131,10 @@ function loginUser(e) {
 
 // =============== Signup page ===============
 const nameSignup = document.getElementById("name");
-  const surnameSignup = document.getElementById("surname");
-  const emailSignup = document.getElementById("email");
-  const passwordSignup = document.getElementById("password");
-  const termsOfUse = document.getElementById("termsofuse");
+const surnameSignup = document.getElementById("surname");
+const emailSignup = document.getElementById("email");
+const passwordSignup = document.getElementById("password");
+const termsOfUse = document.getElementById("termsofuse");
 let createNewUser = (e) => {
   console.log("before prevent");
   e.preventDefault();
@@ -143,34 +143,29 @@ let createNewUser = (e) => {
 
   if (!termsOfUse.checked) {
     errorSignup.innerHTML = "You have to agree with the Terms of Use. <br/>";
-   
   }
 
-  if(nameSignup.value == "") {
+  if (nameSignup.value == "") {
     errorSignup.innerHTML += "Name field have to be filled. <br/>";
     nameSignup.classList.add("error-signup");
-  
-  } 
+  }
 
-  if(surnameSignup.value == "") {
+  if (surnameSignup.value == "") {
     errorSignup.innerHTML += "Surname field have to be filled. <br/>";
     surnameSignup.classList.add("error-signup");
-  
-  } 
+  }
 
-  if(emailSignup.value == "") {
+  if (emailSignup.value == "") {
     errorSignup.innerHTML += "Email field have to be filled. <br/>";
     emailSignup.classList.add("error-signup");
-  
-  } 
+  }
 
-  if(passwordSignup.value == "") {
+  if (passwordSignup.value == "") {
     errorSignup.innerHTML += "Password field have to be filled. ";
     passwordSignup.classList.add("error-signup");
-  
-  } 
-  
-  if(errorSignup.innerHTML.length == "") {
+  }
+
+  if (errorSignup.innerHTML.length == "") {
     // form validation and new user is created
     validationSignup();
 
@@ -184,11 +179,8 @@ let createNewUser = (e) => {
 signupForm.addEventListener("submit", createNewUser);
 
 let validationSignup = () => {
-  
-
   //field validation
 
-  
   user = {
     name: nameSignup.value,
     surname: surnameSignup.value,
