@@ -24,11 +24,12 @@ const userAccountForm = document.getElementById("userAccountForm");
 
 // global variable for logged user
 let user = {};
+
 // =============== firstmenu page ===============
 
-//let clonNode = firstMenu.cloneNode(true);
-//clonNode.id = "firstMenuClone";
+// first page is the two button menu - log in and sign up
 content.appendChild(firstMenu);
+
 
 // check if the user is logged in
 const isUserLogged = () => {
@@ -42,36 +43,37 @@ const isUserLogged = () => {
     userMenu.innerHTML = `You are not logged in`;
   }
 };
+isUserLogged();
 
+
+// Button "User account" in header
 const buttonAccount = document.createElement("button");
 buttonAccount.innerText = "User Account";
 buttonAccount.classList.add("buttonAccount");
-
 
 // username in header
 const username = document.createElement("span");
 username.classList.add("username");
 username.id = "username";
 
+// User account field in Account Form
+const nameAccount = document.getElementById("nameAccount");
+const surnameAccount = document.getElementById("surnameAccount");
+const emailAccount = document.getElementById("emailAccount");
+const passwordAccount = document.getElementById("passwordAccount");
+
 buttonAccount.addEventListener("click", (e) => {
   content.innerHTML = ""; // delete the content
-
-  const nameAccount = document.getElementById("nameAccount");
+  
   nameAccount.value = user.name;
-
-  const surnameAccount = document.getElementById("surnameAccount");
   surnameAccount.value = user.surname;
-
-  const emailAccount = document.getElementById("emailAccount");
   emailAccount.value = user.email;
-
-  const passwordAccount = document.getElementById("passwordAccount");
   passwordAccount.value = user.password;
 
   content.appendChild(userAccount);
 });
 
-// user logout
+// user logout button in header
 const buttonLogout = document.createElement("button");
 buttonLogout.innerHTML = "Log out";
 buttonLogout.classList.add("button-logout");
@@ -83,7 +85,7 @@ buttonLogout.addEventListener("click", (e) => {
   content.appendChild(firstMenu);
 });
 
-// saving User account
+// saving Account form
 userAccountForm.addEventListener("submit", (e) => {
   localStorage.removeItem(user.email);
 
@@ -100,7 +102,7 @@ userAccountForm.addEventListener("submit", (e) => {
   content.appendChild(dashboard);
 });
 
-isUserLogged();
+
 
 login.addEventListener("click", (e) => {
   content.innerHTML = ""; // delete the content
@@ -190,8 +192,8 @@ let createNewUser = (e) => {
   isUserLogged();
 };
 
+// Sign up form listener
 signupForm.addEventListener("submit", createNewUser);
-
 let validationSignup = () => {
   //field validation
 
