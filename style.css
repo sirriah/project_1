@@ -92,6 +92,20 @@ margin: 30px auto 20px;
     background-color: #a0cfff;
 }
 
+.button-logout{
+    background-color: dodgerblue;
+    color: white;
+    box-shadow: none;
+    display: inline-block;
+    margin-top: 0;
+    margin-left: 20px;
+}
+
+.button-logout:hover{
+    background-color: rgb(99, 99, 99);
+    
+}
+
 .disabled {
     display: none;
 }

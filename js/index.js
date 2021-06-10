@@ -37,6 +37,7 @@ const isUserLogged = () => {
     userMenu.innerHTML = `You are logged in as `;
     userMenu.appendChild(username);
     userMenu.appendChild(buttonAccount);
+    userMenu.appendChild(buttonLogout);
   } else {
     userMenu.innerHTML = `You are not logged in`;
   }
@@ -45,6 +46,7 @@ const isUserLogged = () => {
 const buttonAccount = document.createElement("button");
 buttonAccount.innerText = "User Account";
 buttonAccount.classList.add("buttonAccount");
+
 
 // username in header
 const username = document.createElement("span");
@@ -67,6 +69,18 @@ buttonAccount.addEventListener("click", (e) => {
   passwordAccount.value = user.password;
 
   content.appendChild(userAccount);
+});
+
+// user logout
+const buttonLogout = document.createElement("button");
+buttonLogout.innerHTML = "Log out";
+buttonLogout.classList.add("button-logout");
+
+buttonLogout.addEventListener("click", (e) => {
+  user = {};
+  isUserLogged();
+  content.innerHTML = "";
+  content.appendChild(firstMenu);
 });
 
 // saving User account
@@ -230,8 +244,7 @@ const listSaveForm = document.getElementById("listSaveForm");
 listSaveForm.addEventListener("submit", (e) => {
   e.preventDefault();
   if (isNewList) {
-    //console.log(listUL);
-
+   
     let nameList = document.getElementById("listName").value;
     if (!nameList) {
       nameList = "Untitled";
@@ -246,9 +259,9 @@ listSaveForm.addEventListener("submit", (e) => {
     };
     user.lists.push(listObject);
     localStorage.setItem(user.email, JSON.stringify(user));
-    //console.log(listObject);
+   
 
-    // vypis listy
+    // Write the lists
   } else {
     localStorage.removeItem(user.email);
     const renamedList = document.getElementById("listName").value;
@@ -257,7 +270,7 @@ listSaveForm.addEventListener("submit", (e) => {
     for (const iterator of user.lists) {
       if (iterator.creationDate == foundedList.creationDate) {
         iterator.nameList = renamedList;
-        iterator.listUL = renewedUL.innerHTML; // err pri dopisovani
+        iterator.listUL = renewedUL.innerHTML;
       }
     }
     localStorage.setItem(user.email, JSON.stringify(user));
@@ -288,10 +301,12 @@ const writeOutLists = () => {
       // add headline tag with the name of the list into the button
       const listHeadline = document.createElement("h3");
       listHeadline.innerHTML = element.nameList;
+      listHeadline.setAttribute("data-timestamp", element.creationDate);
       listButton.appendChild(listHeadline);
 
       // add date into the "button > span" in nicer format
       const listDate = document.createElement("span");
+      listDate.setAttribute("data-timestamp", element.creationDate);
       const optionsDate = { day: "numeric", month: "short", year: "numeric" }; // format of the date
 
       // in the element.creationDate is not stored the Date object, but only a String - so it have to be parsed via "new Date"
@@ -317,7 +332,10 @@ listOfLists.addEventListener("click", (e) => {
   //console.log(e.target);
   isNewList = false;
   const selectedList = e.target;
-  console.log(selectedList);
+  
+  console.log("E target " + selectedList);
+  console.log("E current target " + e.currentTarget);
+
   console.log("dataset " + selectedList.getAttribute("data-timestamp"));
 
   // https://usefulangle.com/post/3/javascript-search-array-of-objects
